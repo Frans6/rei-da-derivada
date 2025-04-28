@@ -40,7 +40,12 @@ export default function HomePage() {
               ALGO DO TIPO, PARA PARTICIPAR DO RRDD<br />
               ENTRE COM SUA CONTA GOOGLE
             </Paragraph>
-            <Button type="primary">Entrar com Google</Button>
+            <Button 
+                type="primary" 
+                onClick={() => navigate('/initial')}
+            >
+                Entrar com Google
+            </Button>
           </Flex>
         </Flex>
       );
