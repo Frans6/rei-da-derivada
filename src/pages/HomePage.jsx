@@ -30,9 +30,32 @@ export default function HomePage() {
           <Paragraph style={{ fontSize: isMobile ? 14 : 16 }}>
             O Rei/Rainha da Derivada é mais do que um jogo — é uma estratégia de ensino que transforma a aprendizagem em uma experiência ativa, dinâmica e colaborativa. Ideal para ser adaptado a diversos conteúdos, de matemática a ciências humanas.
           </Paragraph>
-          <Button type="primary" size="large" onClick={() => navigate('/about')}>
+          <Button
+            type="default"
+            size="large"
+            style={{
+              backgroundColor: '#fff',
+              borderColor: '#1890ff',
+              color: '#1890ff',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#096dd9';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.borderColor = '#096dd9';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#fff';
+              e.currentTarget.style.color = '#1890ff';
+              e.currentTarget.style.borderColor = '#1890ff';
+            }}
+            onClick={() => navigate('/about')}
+          >
             Saiba Mais
           </Button>
+
+
+
         </Flex>
 
         <Row gutter={[24, 24]} justify="center" style={{ marginTop: isMobile ? 20 : 40, width: '100%' }}>
