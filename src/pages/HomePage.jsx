@@ -1,35 +1,41 @@
-import { Button, Card, Col, Flex, Row, Typography } from "antd";
+import { Button, Card, Col, Flex, Row, Typography, Grid } from "antd";
 import { useNavigate } from 'react-router-dom';
 
 const { Title, Paragraph, Text } = Typography;
+const { useBreakpoint } = Grid;
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const screens = useBreakpoint();
+  const isMobile = !screens.md;
 
   return (
-    <div style={{ background: '#fff', minHeight: '100vh', padding: '40px' }}>
-      <Flex vertical align="center" gap={40}>
+    <div style={{ background: '#fff', minHeight: '100vh', padding: isMobile ? '20px' : '40px' }}>
+      <Flex vertical align="center" gap={isMobile ? 24 : 40}>
         <Flex vertical align="center" gap={10}>
           <img
             src="https://rei-da-derivada.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f28d5551.png&w=384&q=75"
             alt="Logo"
-            style={{ height: 100 }} // logo maior
+            style={{ height: isMobile ? 80 : 100 }}
           />
-          <Title level={2}>Rei/Rainha da Derivada</Title>
+          <Title level={2} style={{ fontSize: isMobile ? 22 : 28, textAlign: "center" }}>
+            Rei/Rainha da Derivada
+          </Title>
         </Flex>
 
         <Flex vertical align="center" gap={16} style={{ maxWidth: 800, textAlign: 'center' }}>
-          <Title level={1} style={{ fontSize: 28 }}>
+          <Title level={1} style={{ fontSize: isMobile ? 22 : 28 }}>
             Uma Metodologia Ativa para Aprender com Engajamento
           </Title>
-          <Paragraph style={{ fontSize: 16 }}>
+          <Paragraph style={{ fontSize: isMobile ? 14 : 16 }}>
             O Rei/Rainha da Derivada é mais do que um jogo — é uma estratégia de ensino que transforma a aprendizagem em uma experiência ativa, dinâmica e colaborativa. Ideal para ser adaptado a diversos conteúdos, de matemática a ciências humanas.
           </Paragraph>
           <Button type="primary" size="large" onClick={() => navigate('/about')}>
             Saiba Mais
           </Button>
         </Flex>
-        <Row gutter={[24, 24]} justify="center" style={{ marginTop: 40 }}>
+
+        <Row gutter={[24, 24]} justify="center" style={{ marginTop: isMobile ? 20 : 40, width: '100%' }}>
           {[
             {
               title: 'Aprendizagem Ativa',
@@ -64,10 +70,8 @@ export default function HomePage() {
           ))}
         </Row>
 
-
-
-        <Flex vertical align="center" gap={16} style={{ marginTop: 60 }}>
-          <Paragraph style={{ fontSize: 18, textAlign: "center" }}>
+        <Flex vertical align="center" gap={16} style={{ marginTop: isMobile ? 40 : 60, padding: isMobile ? '0 10px' : 0 }}>
+          <Paragraph style={{ fontSize: isMobile ? 16 : 18, textAlign: "center", maxWidth: 600 }}>
             Para participar do RRDD, entre com sua conta Google e comece agora sua jornada.
           </Paragraph>
           <Button
