@@ -46,6 +46,31 @@ const InitialPage = () => {
     };
 
     const renderHorizontalMenu = () => {
+        // Função para criar itens do menu incluindo submenus
+        const createMenuItems = () => {
+            return initialPageMenu.map(item => {
+                if (item.children) {
+                    // Se tem filhos, cria um SubMenu
+                    return (
+                        <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
+                            {item.children.map(child => (
+                                <Menu.Item key={child.key} icon={child.icon}>
+                                    {child.label}
+                                </Menu.Item>
+                            ))}
+                        </Menu.SubMenu>
+                    );
+                } else {
+                    // Se não tem filhos, cria um Item normal
+                    return (
+                        <Menu.Item key={item.key} icon={item.icon}>
+                            {item.label}
+                        </Menu.Item>
+                    );
+                }
+            });
+        };
+
         return (
             <div style={{ 
                 width: '100%', 
@@ -67,11 +92,7 @@ const InitialPage = () => {
                         minWidth: isMobile ? initialPageMenu.length * 130 : 'auto',
                     }}
                 >
-                    {initialPageMenu.map(item => (
-                        <Menu.Item key={item.key} icon={item.icon}>
-                            {item.label}
-                        </Menu.Item>
-                    ))}
+                    {createMenuItems()}
                 </Menu>
             </div>
         );
