@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SideMenu = ({ items, defaultSelected }) => {
-    const [current, setCurrent] = useState(defaultSelected);
     const navigate = useNavigate();
+    const location = useLocation();
+    const currentPath = location.pathname.replace('/', '') || defaultSelected;
 
     const onClick = (e) => {
-        setCurrent(e.key);
         navigate(`/${e.key}`);
     };
 
     return (
         <Menu
             onClick={onClick}
-            selectedKeys={[current]}
+            selectedKeys={[currentPath]}
             mode="inline"
             style={{ 
                 width: 256,

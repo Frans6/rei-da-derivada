@@ -1,33 +1,49 @@
 import { 
     HomeOutlined,
+    PlusOutlined,
     CalendarOutlined,
-    PlusCircleOutlined
+    TeamOutlined,
+    PlayCircleOutlined,
+    CheckCircleOutlined,
+    LoginOutlined
 } from '@ant-design/icons';
 
 export const initialPageMenu = [
     {
-        label: 'Página Inicial',
         key: 'home',
-        icon: <HomeOutlined />
+        icon: <HomeOutlined />,
+        label: 'Página Inicial',
     },
     {
-        label: 'Meus Eventos',
-        key: 'events',
+        key: 'my-events',
         icon: <CalendarOutlined />,
+        label: 'Meus Eventos',
         children: [
             {
-                label: 'Teste 1',
-                key: 'intro'
+                key: 'new-event',
+                icon: <PlusOutlined />,
+                label: 'Novo Evento',
             },
             {
-                label: 'Teste 2',
-                key: 'basics'
+                key: 'join-event',
+                icon: <LoginOutlined />,
+                label: 'Participar de Evento',
+            },
+            {
+                key: 'active-events',
+                icon: <PlayCircleOutlined />,
+                label: 'Eventos Ativos',
+            },
+            {
+                key: 'past-events',
+                icon: <CheckCircleOutlined />,
+                label: 'Eventos Passados',
             }
         ]
     },
     {
-        label: 'Novo Evento',
-        key: 'new-event',
-        icon: <PlusCircleOutlined />
+        key: 'staff',
+        icon: <TeamOutlined />,
+        label: 'Staff',
     }
 ];
