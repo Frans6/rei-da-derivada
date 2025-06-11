@@ -15,29 +15,30 @@ const ActiveEventsComponent = () => {
     {
       id: 1,
       name: "Campeonato de Derivadas - Turma A",
-      participants: 25,
       status: "Ativo",
       role: "Participante",
-      startDate: "2024-01-15",
-      description: "Evento focado em exercícios de derivadas básicas"
+      startDate: "2024-01-15"
     },
     {
       id: 2,
       name: "Desafio Cálculo Avançado",
-      participants: 18,
       status: "Ativo",
       role: "Staff",
-      startDate: "2024-01-20",
-      description: "Competição de cálculo diferencial avançado"
+      startDate: "2024-01-20"
     },
     {
       id: 3,
       name: "Rei da Derivada - Matemática I",
-      participants: 32,
       status: "Ativo",
       role: "Participante",
-      startDate: "2024-01-22",
-      description: "Evento introdutório para novos estudantes"
+      startDate: "2024-01-22"
+    },
+    {
+        id: 4,
+        name: "Torneio de Integrais - Turma B",
+        status: "Ativo",
+        role: "Participante",
+        startDate: "2024-01-25"
     }
   ]);
 
@@ -52,7 +53,7 @@ const ActiveEventsComponent = () => {
     setTimeout(() => {
       console.log('Lista de eventos atualizada');
       setLoading(false);
-    }, 1000);
+    }, 2000);
   };
 
   const getStatusColor = (role) => {
@@ -95,7 +96,7 @@ const ActiveEventsComponent = () => {
       ) : (
         <>
           <Paragraph style={{ fontSize: 14, marginBottom: 16 }}>
-            Você tem {activeEvents.length} evento(s) ativo(s) no momento.
+            Você tem {activeEvents.length} evento{activeEvents.length > 1 ? 's' : ''} ativo{activeEvents.length > 1 ? 's' : ''} no momento.
           </Paragraph>
           
           <List
@@ -155,44 +156,55 @@ const ActiveEventsComponent = () => {
                 >
                   <List.Item.Meta
                     avatar={
-                      <Badge 
-                        status="processing" 
-                        color={getStatusColor(event.role)}
-                      />
-                    }
-                    title={
-                      <Space direction={isMobile ? 'vertical' : 'horizontal'} size="small">
-                        <Text strong style={{ fontSize: isMobile ? 14 : 16 }}>
-                          {event.name}
-                        </Text>
+                      isMobile ? (
                         <Badge 
-                          count={event.role} 
+                          count={event.role.charAt(0)}
                           style={{ 
                             backgroundColor: event.role === 'Staff' ? '#1890ff' : '#52c41a',
-                            fontSize: '10px'
+                            fontSize: '10px',
+                            minWidth: '20px',
+                            height: '20px',
+                            lineHeight: '18px',
+                            borderRadius: '50%'
                           }} 
                         />
-                      </Space>
+                      ) : (
+                        <Badge 
+                          status="processing" 
+                          color={getStatusColor(event.role)}
+                        />
+                      )
+                    }
+                    title={
+                      isMobile ? (
+                        <Text strong style={{ fontSize: 14 }}>
+                          {event.name}
+                        </Text>
+                      ) : (
+                        <div style={{ 
+                          display: 'flex', 
+                          alignItems: 'center',
+                          gap: '8px'
+                        }}>
+                          <Text strong style={{ fontSize: 16 }}>
+                            {event.name}
+                          </Text>
+                          <Badge 
+                            count={event.role}
+                            style={{ 
+                              backgroundColor: event.role === 'Staff' ? '#1890ff' : '#52c41a',
+                              fontSize: '10px'
+                            }} 
+                          />
+                        </div>
+                      )
                     }
                     description={
-                      <Space direction="vertical" size={4}>
-                        <Text type="secondary" style={{ fontSize: 12 }}>
-                          {event.description}
+                      <Space size={4}>
+                        <PlayCircleOutlined style={{ fontSize: 12, color: '#52c41a' }} />
+                        <Text style={{ fontSize: 12, color: '#52c41a' }}>
+                          Desde {new Date(event.startDate).toLocaleDateString('pt-BR')}
                         </Text>
-                        <Space size="middle">
-                          <Space size={4}>
-                            <UserOutlined style={{ fontSize: 12, color: '#999' }} />
-                            <Text style={{ fontSize: 12, color: '#999' }}>
-                              {event.participants} participantes
-                            </Text>
-                          </Space>
-                          <Space size={4}>
-                            <PlayCircleOutlined style={{ fontSize: 12, color: '#52c41a' }} />
-                            <Text style={{ fontSize: 12, color: '#52c41a' }}>
-                              Desde {new Date(event.startDate).toLocaleDateString('pt-BR')}
-                            </Text>
-                          </Space>
-                        </Space>
                       </Space>
                     }
                   />

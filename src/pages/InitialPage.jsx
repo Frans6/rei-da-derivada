@@ -19,7 +19,6 @@ const InitialPage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     
-    // Determina qual componente mostrar baseado na URL atual
     const getActiveComponent = () => {
         const path = location.pathname.replace('/', '');
         
@@ -46,11 +45,9 @@ const InitialPage = () => {
     };
 
     const renderHorizontalMenu = () => {
-        // Função para criar itens do menu incluindo submenus
         const createMenuItems = () => {
             return initialPageMenu.map(item => {
                 if (item.children) {
-                    // Se tem filhos, cria um SubMenu
                     return (
                         <Menu.SubMenu key={item.key} icon={item.icon} title={item.label}>
                             {item.children.map(child => (
@@ -61,7 +58,6 @@ const InitialPage = () => {
                         </Menu.SubMenu>
                     );
                 } else {
-                    // Se não tem filhos, cria um Item normal
                     return (
                         <Menu.Item key={item.key} icon={item.icon}>
                             {item.label}
