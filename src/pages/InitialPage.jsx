@@ -8,6 +8,7 @@ import JoinEventComponent from './components/JoinEventComponent';
 import CreateEventComponent from './components/CreateEventComponent';
 import StaffLoginComponent from './components/StaffLoginComponent';
 import ActiveEventsComponent from './components/ActiveEventsComponent.jsx';
+import PastEventsComponent from './components/PastEventsComponent.jsx';
 
 const { Content, Sider } = Layout;
 const { Title, Paragraph } = Typography;
@@ -29,6 +30,8 @@ const InitialPage = () => {
                 return <JoinEventComponent />;
             case 'active-events':
                 return <ActiveEventsComponent />;
+            case 'past-events':
+                return <PastEventsComponent />;
             case 'staff':
                 return <StaffLoginComponent />;
             case 'home':

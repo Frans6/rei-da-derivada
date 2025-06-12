@@ -21,6 +21,7 @@ function App() {
           <Route path="/new-event" element={<InitialPage />} />
           <Route path="/join-event" element={<InitialPage />} />
           <Route path="/active-events" element={<InitialPage />} />
+          <Route path="/past-events" element={<InitialPage />} />
           <Route path="/my-events" element={<InitialPage />} />
           <Route path="/staff" element={<InitialPage />} />
           
